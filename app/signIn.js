@@ -54,7 +54,10 @@ export default function SignIn() {
             {/*Statusbar para configurar o estilo da barra de status */}
             <StatusBar style="dark" />
             <View style={{ paddingTop: hp(8), paddingHorizontal: wp(5) }} className="flex gap-12">
+                {/*Exibe uma imagem de login no topo da tela*/}
+                <View className="items-center">
                 <Image style={{ height: hp(25) }} resizeMode='contain' source={require('../assets/images/login.png')} />
+                </View>
             </View>
 
             {/*Container dos campos de entrada e botoes*/}
@@ -82,7 +85,7 @@ export default function SignIn() {
                 {/*Campo de entrada de senha*/}
                 <View className="gap-3">
                     <View style={{ height: hp(7) }} className="flex-row gap-4 px-4 bg-neutral-100 items-center rounded-x1">
-                        <Octicons name="lock" size={hp(2.7)} color="gray"/>
+                        <Octicons name="lock" size={hp(2.7)} color="gray" />
                         <TextInput
                             onChangeText={value => passwordRef.current = value}
                             style={{ fontSize: hp(2) }}
@@ -92,6 +95,39 @@ export default function SignIn() {
                             placeholderTextColor={'gray'}
                         />
                     </View>
+                    {/**Link para a funcionalidade de "esqueci a senha" */}
+                    <Text style={{ fontSize: hp(1.8) }} className="font-semibold text-right text-neutral-500">
+                        Esqueceu a senha?
+                    </Text>
+                </View>
+
+                {/* Botão de envio do formulario de login */}
+                <View>
+                    {
+                        loading ? (
+                            <View className="flex-row justify-center">
+                                <Loading size={hp(6.5)} />
+                            </View>
+                        ) : (
+                            <TouchableOpacity onPress={heandleLogin} style={{ height: hp(6.5) }} className="bg-indigo-500 rounded-x1 justify-center items-center">
+                                <Text style={{ fontSize: hp(2.7) }} className="text-white font-bold tracking-wider">
+                                    Sign In
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    }
+                </View>
+
+                {/*Texto para redirecionar para a tela de registro */}
+                <View className="flex-row justify-center">
+                    <Text style={{ fontSize: hp(1.8) }} className="font-semibold text-neutral-500">
+                        Não tem uma conta?
+                    </Text>
+                    <Pressable onPress={() => router.push('signUp')}>
+                        <Text style={{ fontSize: hp(1.8) }} className="font-semibold text-neutral-500">
+                            Sign Up
+                        </Text>
+                    </Pressable>
                 </View>
             </View>
         </CustomKeyboardView>
