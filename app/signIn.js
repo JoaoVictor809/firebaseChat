@@ -28,6 +28,5 @@ export default function SignIn(){
     //useRef cria referencias para os inputs de email e senha 
     const emailRef = useRef("");
     const passwordRef = useRef("");
-    return()
 }
 
